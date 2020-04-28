@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Guided project for **Node API** module 4.",
   "main": "index.js",
+  "engines": {
+    "node": "12.12.0"
+  },
   "scripts": {
     "server": "nodemon index.js",
     "start": "node index.js"
