@@ -8,6 +8,10 @@ Step #3 --> npm install dotenv -- allows us to configure some environment variab
 
 Step #4 --> inside index.js --> require('dotenv').config(); ... then restart server
 
+Step # 5 --> Deploy on Heroku
+
+Step # 6 -->
+
 Other Notes:
 
 \*\* When we deploy to heroku, it assigns us an environment variable
