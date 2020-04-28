@@ -1,0 +1,29 @@
+{
+  "name": "simple-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MelodyRackham/simple-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MelodyRackham/simple-server/issues"
+  },
+  "homepage": "https://github.com/MelodyRackham/simple-server#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.1"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "helmet": "^3.22.0",
+    "knex": "^0.20.3",
+    "sqlite3": "^4.1.0"
+  }
+}
