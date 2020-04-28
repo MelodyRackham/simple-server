@@ -1,29 +1,30 @@
 {
-  "name": "simple-server",
+  "name": "node-api4-guided",
   "version": "1.0.0",
-  "description": "",
+  "description": "Guided project for **Node API** module 4.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "server": "nodemon index.js",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MelodyRackham/simple-server.git"
+    "url": "git+https://github.com/LambdaSchool/node-api4-guided.git"
   },
-  "author": "",
-  "license": "ISC",
+  "keywords": [],
+  "author": "Lambda School",
   "bugs": {
-    "url": "https://github.com/MelodyRackham/simple-server/issues"
+    "url": "https://github.com/LambdaSchool/node-api4-guided/issues"
   },
-  "homepage": "https://github.com/MelodyRackham/simple-server#readme",
-  "devDependencies": {
-    "nodemon": "^2.0.1"
-  },
+  "homepage": "https://github.com/LambdaSchool/node-api4-guided#readme",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^3.22.0",
-    "knex": "^0.20.3",
-    "sqlite3": "^4.1.0"
+    "knex": "^0.20.13",
+    "sqlite3": "^4.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
   }
 }
