@@ -17,3 +17,9 @@ Other Notes:
 \*\* When we deploy to heroku, it assigns us an environment variable
 console.log(process.env) <-- This is a built in node object that is designed to hold environment variables!
 Envrionment variables are variables that transcend a specific file. process.env is kind of a master list of variables that can be shared across an entire repository. This where we will find our port.
+
+DATA PERSISTENCE --> Data that we want to save. Data that we waant to stay the same unless we mess with it..
+
+RELATIONAL DATABASES --> Things are stored in tables with rows and columns...ID's play an important role...they are the oldest, most "tried and true" type of databases..
+columns are called "fields"
+rows are called "records"
