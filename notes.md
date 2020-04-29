@@ -34,3 +34,95 @@ How to query the database: (select, insert, update, delete)
 Why do we care about SQL? .. most programmers in the real world actually suck at it and only know the very very basics..
 
 Knex.js --> Query builder language. It essentially allows you to build SQL queries using JavaScript.
+
+Knex statements are ALL asynchronous .. so are API calls. (They take time to access the DB).
+
+const express = require('express');
+
+// database access using knex
+const db = require('../data/db-config.js'); // << renamed to knex from db
+
+const router = express.Router();
+// SELECT \* FROM posts
+
+router.get('/', (req, res) => {
+db.select('\*')
+.from('posts')
+.then((posts) => {
+res.status(200).json(posts);
+})
+.catch((error) => {
+console.log(error);
+res.status(500).json({ errorMessage: 'Error getting the posts ' });
+});
+});
+
+router.get('/:id', (req, res) => {
+// select _ from posts where id = req.params.id
+knex
+.select('_')
+.from('posts')
+// .where("id", "=", req.params.id)
+.where({ id: req.params.id })
+.first() // equivalent to posts[0]
+.then((post) => {
+res.status(200).json(post);
+})
+.catch((error) => {
+console.log(error);
+res.status(500).json({ errorMessage: 'Error getting the post' });
+});
+});
+
+router.post('/', (req, res) => {
+// INSERT INTO Posts (all of the keys from req.body) VALUES ( all of the values from req.body)
+const postData = req.body;
+
+db('posts')
+.insert(postData)
+.then((ids) => {
+res.status(201).json({ newPost: ids[0] });
+})
+.catch((error) => {
+console.log('post error', error);
+res.status(500).json({ message: 'Faialed to insert post' });
+});
+});
+
+router.put('/:id', (req, res) => {
+const { id } = req.params;
+const changes = req.body;
+db('posts')
+.where({ id })
+.update(changes)
+.then((count) => {
+if (count) {
+res.json({ updated: count });
+} else {
+res.status(404).json({ message: 'invalid post id' });
+}
+})
+.catch((error) => {
+res.status(500).json({ message: 'failed to update post' });
+});
+});
+
+router.delete('/:id', (req, res) => {
+const { id } = req.params;
+// DELETE FROM Posts WHERE id = id
+db('posts')
+.where({ id })
+.del()
+.then((count) => {
+if (count) {
+res.json({ deleted: count });
+} else {
+res.status(404).json({ message: 'invalid post id' });
+}
+})
+.catch((error) => {
+res.status(500).json({ message: 'failed to delete post' });
+});
+});
+
+module.exports = router;
