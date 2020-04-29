@@ -23,3 +23,14 @@ DATA PERSISTENCE --> Data that we want to save. Data that we waant to stay the s
 RELATIONAL DATABASES --> Things are stored in tables with rows and columns...ID's play an important role...they are the oldest, most "tried and true" type of databases..
 columns are called "fields"
 rows are called "records"
+
+How to query the database: (select, insert, update, delete)
+
+1. SELECT \* FROM Customers;
+2. INSERT INTO Customers (customerName, contactName, Address, City, postalcode, country) VALUES ("Lambda School", "Austin Allred", "1 Lambda Ct", "Provo", "84601", "USA");
+3. UPDATE Customers SET city = "Silicon Valley", postalCode = "93848"; WHERE customerName = "Lambda School";
+4. DELETE FROM Customers WHERE CustomerID = 39;
+
+Why do we care about SQL? .. most programmers in the real world actually suck at it and only know the very very basics..
+
+Knex.js --> Query builder language. It essentially allows you to build SQL queries using JavaScript.
