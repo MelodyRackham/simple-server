@@ -47,3 +47,8 @@ Primary Keys have two criteria:
 2. It has to be unique. There can't be two entries with the same ID. (It doesn't always have to be an integer).. but that is the easiest.
 
 First step when creating a new table is to create your primary id, almost always an autoincrementing id.
+
+What is a migration? -->
+It's the way we're going to create databases using knex
+A representation of changes we want to make to the Database schema.
+(A way of keeping track of how the database changes and morphs over time)
