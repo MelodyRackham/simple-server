@@ -37,92 +37,13 @@ Knex.js --> Query builder language. It essentially allows you to build SQL queri
 
 Knex statements are ALL asynchronous .. so are API calls. (They take time to access the DB).
 
-const express = require('express');
+Primary Key = Every single table will have a primary key. In other words, an ID!
 
-// database access using knex
-const db = require('../data/db-config.js'); // << renamed to knex from db
+The purpose of a primary key is that every entry in a table should have a unique identifier
 
-const router = express.Router();
-// SELECT \* FROM posts
+Primary Keys have two criteria:
 
-router.get('/', (req, res) => {
-db.select('\*')
-.from('posts')
-.then((posts) => {
-res.status(200).json(posts);
-})
-.catch((error) => {
-console.log(error);
-res.status(500).json({ errorMessage: 'Error getting the posts ' });
-});
-});
+1. It has to be required (not nullible) you cannot have a blank entry in your ID field
+2. It has to be unique. There can't be two entries with the same ID. (It doesn't always have to be an integer).. but that is the easiest.
 
-router.get('/:id', (req, res) => {
-// select _ from posts where id = req.params.id
-knex
-.select('_')
-.from('posts')
-// .where("id", "=", req.params.id)
-.where({ id: req.params.id })
-.first() // equivalent to posts[0]
-.then((post) => {
-res.status(200).json(post);
-})
-.catch((error) => {
-console.log(error);
-res.status(500).json({ errorMessage: 'Error getting the post' });
-});
-});
-
-router.post('/', (req, res) => {
-// INSERT INTO Posts (all of the keys from req.body) VALUES ( all of the values from req.body)
-const postData = req.body;
-
-db('posts')
-.insert(postData)
-.then((ids) => {
-res.status(201).json({ newPost: ids[0] });
-})
-.catch((error) => {
-console.log('post error', error);
-res.status(500).json({ message: 'Faialed to insert post' });
-});
-});
-
-router.put('/:id', (req, res) => {
-const { id } = req.params;
-const changes = req.body;
-db('posts')
-.where({ id })
-.update(changes)
-.then((count) => {
-if (count) {
-res.json({ updated: count });
-} else {
-res.status(404).json({ message: 'invalid post id' });
-}
-})
-.catch((error) => {
-res.status(500).json({ message: 'failed to update post' });
-});
-});
-
-router.delete('/:id', (req, res) => {
-const { id } = req.params;
-// DELETE FROM Posts WHERE id = id
-db('posts')
-.where({ id })
-.del()
-.then((count) => {
-if (count) {
-res.json({ deleted: count });
-} else {
-res.status(404).json({ message: 'invalid post id' });
-}
-})
-.catch((error) => {
-res.status(500).json({ message: 'failed to delete post' });
-});
-});
-
-module.exports = router;
+First step when creating a new table is to create your primary id, almost always an autoincrementing id.
